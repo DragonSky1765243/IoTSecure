@@ -3,7 +3,7 @@ import pexpect
 ip_address = '192.168.56.101'
 username = 'prne'
 password = 'cisco123!'
-password_enable = 'class13!'
+password_enable = 'class123!'
 new_admin_username = 'Haroon'
 new_admin_password = 'yourpassword'
 
