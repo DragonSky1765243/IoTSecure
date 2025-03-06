@@ -58,7 +58,7 @@ result = session.expect([r'\(config\)#', pexpect.TIMEOUT, pexpect.EOF])
 session.sendline('ip http authentication local')
 result = session.expect([r'\(config\)#', pexpect.TIMEOUT, pexpect.EOF]) 
 
-session.sendline('ip acess-list extended IoT_Security')
+session.sendline('ip access-list extended IoT_Security')
 result = session.expect([r'\(config\)#', pexpect.TIMEOUT, pexpect.EOF]) 
 
 session.sendline('permit tcp 192.168.56.0 0.0.0.255 any eq 443')
