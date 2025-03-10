@@ -47,7 +47,7 @@ session.sendline('ip domain-name mynetwork.local')
 result = session.expect([r'Haroon\(config\)#', pexpect.TIMEOUT, pexpect.EOF]) 
 
 # Generating a crypto key for modules 2048
-session.sendline('crypto key generate rsa modules 2048')
+session.sendline('crypto key generate rsa modulus 2048')
 result = session.expect([r'Haroon\(config\)#', pexpect.TIMEOUT, pexpect.EOF]) 
 
 # Include ssh versions
