@@ -135,8 +135,20 @@ result = session.expect([r'Haroon\(config\)#', pexpect.TIMEOUT, pexpect.EOF])
 session.sendline('logging console')
 result = session.expect([r'Haroon\(config\)#', pexpect.TIMEOUT, pexpect.EOF]) 
 
+# Adding a logging host
+session.sendline('logging host 192.168.56.200')
+result = session.expect([r'Haroon\(config\)#', pexpect.TIMEOUT, pexpect.EOF]) 
+
 # Enable logging trap information 
 session.sendline('logging trap informational')
+result = session.expect([r'Haroon\(config\)#', pexpect.TIMEOUT, pexpect.EOF]) 
+
+# Enable logging trap warnings
+session.sendline('logging console')
+result = session.expect([r'Haroon\(config\)#', pexpect.TIMEOUT, pexpect.EOF]) 
+
+# Entering buffered 64000
+session.sendline('logging console')
 result = session.expect([r'Haroon\(config\)#', pexpect.TIMEOUT, pexpect.EOF]) 
 
 # Add timestamps logging time
@@ -145,6 +157,25 @@ result = session.expect([r'Haroon\(config\)#', pexpect.TIMEOUT, pexpect.EOF])
 
 # Exit config mode
 session.sendline('exit')
+
+# Entering 1st Alert
+session.sendline('send log "ALERT: SSH Login Attempt Detected on CSR1000v'
+
+# 2nd Alert on Username
+session.sendline('show running-config | include username')
+result = session.expect[(r'Haroon\)#, pexpect.TIMEOUT, pexpect.EOF])
+
+# Check for an error, alerting admin
+if 'username' not in session.before:
+    session.sendline('send log "ALERT: Unauthorised Admin Modification Detected!"')
+
+# 3rd Alert on Ip adress
+session.sendline('show access-list IoT_Security')
+result = session.expect[(r'Haroon\)#, pexpect.TIMEOUT, pexpect.EOF])
+
+# Check for an error, alerting modification
+if 'deny ip any any' not in session.before:
+    session.sendline('send log "ALERT: ACL Modification Detected!"')
 
 # Exit enable mode
 session.sendline('exit')
