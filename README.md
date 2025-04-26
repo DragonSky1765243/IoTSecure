@@ -169,7 +169,7 @@ result = session.expect[(r'Haroon\)#, pexpect.TIMEOUT, pexpect.EOF])
 if 'username' not in session.before:
     session.sendline('send log "ALERT: Unauthorised Admin Modification Detected!"')
 
-# 3rd Alert on Ip adress
+# 3rd Alert on Ip address
 session.sendline('show access-list IoT_Security')
 result = session.expect[(r'Haroon\)#, pexpect.TIMEOUT, pexpect.EOF])
 
